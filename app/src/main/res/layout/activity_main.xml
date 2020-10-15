@@ -8,10 +8,39 @@
     android:weightSum="9"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <Space
         android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="3">
+        android:layout_marginLeft="15dp"
+        android:layout_weight="0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
+            android:text="Активна игра № " />
+
+        <TextView
+            android:id="@+id/GameRoundInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
+            android:text="780789" />
+
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+    <RelativeLayout
+        android:id="@+id/EnemyCardsLayout"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/centerCard1"
@@ -37,8 +66,7 @@
             android:layout_toLeftOf="@+id/centerCard1"
             android:minWidth="75dp"
             android:minHeight="120dp"
-            android:scaleType="fitXY"
-            />
+            android:scaleType="fitXY" />
 
         <ImageView
             android:id="@+id/secondLeftCard1"
@@ -98,6 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0.5dp"
             android:text="Счет соперника " />
+
         <TextView
             android:id="@+id/EnemyScoreInfo"
             android:layout_width="wrap_content"
@@ -105,8 +134,25 @@
             android:layout_margin="0.5dp"
             android:text="780789" />
     </LinearLayout>
-
     <RelativeLayout
+        android:id="@+id/WinnerInfoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/WinnerInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="2.5dp"
+            android:text="Ставка соперника" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/RateInfoLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
@@ -147,6 +193,7 @@
             android:text="Ваша ставка" />
 
         <TextView
+            android:id="@+id/PlayerRateInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/PlayerTextBlock"
@@ -156,6 +203,7 @@
 
 
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -167,6 +215,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0.5dp"
             android:text="Счет игрока " />
+
         <TextView
             android:id="@+id/PlayerScoreInfo"
             android:layout_width="wrap_content"
@@ -174,14 +223,14 @@
             android:layout_margin="0.5dp"
             android:text="780789" />
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:padding="0dp">
 
         <ImageView
-            android:onClick="SelectCard"
             android:id="@+id/centerCard"
             android:layout_width="75dp"
             android:layout_height="120dp"
@@ -192,10 +241,10 @@
             android:layout_marginBottom="5dp"
             android:minWidth="75dp"
             android:minHeight="120dp"
+            android:onClick="SelectCard"
             android:scaleType="fitXY" />
 
         <ImageView
-            android:onClick="SelectCard"
             android:id="@+id/firstLeftCard"
             android:layout_width="75dp"
             android:layout_height="120dp"
@@ -206,10 +255,10 @@
             android:layout_toLeftOf="@+id/centerCard"
             android:minWidth="75dp"
             android:minHeight="120dp"
+            android:onClick="SelectCard"
             android:scaleType="fitXY" />
 
         <ImageView
-            android:onClick="SelectCard"
             android:id="@+id/secondLeftCard"
             android:layout_width="75dp"
             android:layout_height="120dp"
@@ -220,10 +269,10 @@
             android:layout_marginBottom="5dp"
             android:layout_toStartOf="@+id/firstLeftCard"
             android:layout_toLeftOf="@+id/firstLeftCard"
+            android:onClick="SelectCard"
             android:scaleType="fitXY" />
 
         <ImageView
-            android:onClick="SelectCard"
             android:id="@+id/firstRightCard"
             android:layout_width="75dp"
             android:layout_height="120dp"
@@ -234,10 +283,10 @@
             android:layout_toRightOf="@+id/centerCard"
             android:minWidth="75dp"
             android:minHeight="120dp"
+            android:onClick="SelectCard"
             android:scaleType="fitXY" />
 
         <ImageView
-            android:onClick="SelectCard"
             android:id="@+id/secondRightCard"
             android:layout_width="75dp"
             android:layout_height="120dp"
@@ -250,15 +299,46 @@
             android:layout_toRightOf="@+id/firstRightCard"
             android:minWidth="75dp"
             android:minHeight="120dp"
+            android:onClick="SelectCard"
             android:scaleType="fitXY" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:visibility="gone"
+
+        android:id="@+id/PlayerRateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_weight="3">
+
+        <EditText
+            android:hint="Ваша ставка"
+            android:id="@+id/PlayerRateHolder"
+            android:inputType="numberDecimal"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:onClick="SharePlayerRate"
+            />
+
+        <Button
+            android:onClick="SharePlayerRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/PlayerRateHolder"
+            android:text="Сделать ставку" />
+
+    </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/PlayerNavigationLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center">
+
+
 
         <Button
             android:id="@+id/ShareCardsBtn"
@@ -272,24 +352,42 @@
             android:text="Раздать карты" />
 
         <Button
-            android:onClick="ReplaceCard"
             android:id="@+id/ReplaceCardBtn"
-            android:layout_below="@+id/ShareCardsBtn"
             android:layout_width="150dp"
             android:layout_height="50dp"
+            android:layout_below="@+id/ShareCardsBtn"
             android:layout_margin="2.5dp"
+            android:onClick="ReplaceCard"
             android:text="Заменить карту" />
 
         <Button
             android:id="@+id/EndGameStepBtn"
             android:layout_width="150dp"
             android:layout_height="50dp"
+            android:layout_alignBottom="@id/ReplaceCardBtn"
             android:layout_marginLeft="2.5dp"
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/ReplaceCardBtn"
-            android:layout_alignBottom="@id/ReplaceCardBtn"
+            android:onClick="EndGameRound"
             android:text="Завершить ход" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/PlayerRoundFinishedLayout"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="NextGameRound"
+            android:text="Следующий раунд"/>
+        <!--
+                android:visibility="gone"
+        -->
+    </RelativeLayout>
 
 </LinearLayout>

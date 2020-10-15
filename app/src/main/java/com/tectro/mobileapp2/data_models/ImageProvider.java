@@ -53,11 +53,14 @@ public class ImageProvider {
             CardImage = Bitmap.createBitmap(OriginalImage, ((int) cardWidth), ((int) cardHeight * 4), (int) cardWidth, (int) cardHeight);
 
         if (isSelected) {
-            Bitmap result = Bitmap.createBitmap((int) (cardWidth * 1.1), (int) (cardHeight * 1.1), Bitmap.Config.ARGB_8888);
+            double BorderWidth = (cardWidth * 1.03);
+            double BorderHeight = (cardHeight * 1.03);
+
+            Bitmap result = Bitmap.createBitmap((int) BorderWidth, (int) BorderHeight, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(result);
-            bluePint.setColor(Color.CYAN);
-            canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), bluePint);
-            canvas.drawBitmap(CardImage, (int) ((cardWidth * 1.1 - cardWidth) / 2.0), (int) ((cardHeight * 1.1 - cardHeight) / 2.0), bluePint);
+            bluePint.setColor(Color.rgb(128,0,0));
+            canvas.drawRoundRect(0, 0, canvas.getWidth(), canvas.getHeight(), 40,40,bluePint);
+            canvas.drawBitmap(CardImage, (int) ((BorderWidth - cardWidth) / 2.0), (int) ((BorderHeight- cardHeight) / 2.0), bluePint);
             return result;
         }
 

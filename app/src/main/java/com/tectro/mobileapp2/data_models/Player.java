@@ -1,12 +1,15 @@
 package com.tectro.mobileapp2.data_models;
 
+import android.security.identity.EphemeralPublicKeyNotFoundException;
+
 import com.tectro.mobileapp2.Interfaces.IPlayersHoldable;
 import com.tectro.mobileapp2.Interfaces.IRateCollectable;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Player implements IRateCollectable {
-    private ArrayList<GameCard> TakenCards;
+    private ArrayList<ChangeableCard> TakenCards;
     private int Score;
     private int readyRate;
 
@@ -21,12 +24,20 @@ public class Player implements IRateCollectable {
 
     //region access modifiers
 
+    public boolean TryReplaceCard(int index,GameCard newCard)
+    {
+        if(index<TakenCards.size())
+            return TakenCards.get(index).TryChangeCard(newCard);
+
+        return false;
+    }
+
     public ArrayList<GameCard> getTakenCards() {
-        return TakenCards;
+        return (ArrayList<GameCard>) TakenCards.stream().map(ChangeableCard::getHoldenCard).collect(Collectors.toList());
     }
 
     public void setTakenCards(ArrayList<GameCard> takenCards) {
-        TakenCards = takenCards;
+        TakenCards = takenCards != null ? (ArrayList<ChangeableCard>) takenCards.stream().map(ChangeableCard::new).collect(Collectors.toList()) : new ArrayList<>();
     }
 
     public int getScore() {
@@ -42,13 +53,46 @@ public class Player implements IRateCollectable {
     }
 
     public void setReadyRate(int readyRate) {
-        this.readyRate = readyRate <= this.readyRate ? readyRate : Score;
+        this.readyRate = Math.min(readyRate, Score);
     }
 
     public Player(int initialScore)
     {
         Score = initialScore;
         TakenCards = new ArrayList<>();
+    }
+    //endregion
+}
+
+class ChangeableCard
+{
+
+    private GameCard HoldenCard;
+    private boolean CanChange;
+
+    //region Access modifiers
+    public boolean TryChangeCard(GameCard card)
+    {
+        if(CanChange){
+            HoldenCard = card;
+            CanChange = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public GameCard getHoldenCard() {
+        return HoldenCard;
+    }
+
+    ChangeableCard(GameCard holdenCard) {
+        HoldenCard = holdenCard;
+        CanChange = true;
+    }
+
+    ChangeableCard() {
+        CanChange = true;
     }
     //endregion
 }
