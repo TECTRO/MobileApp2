@@ -18,6 +18,7 @@ import com.tectro.mobileapp2.Interfaces.IActivityUpdatable;
 import com.tectro.mobileapp2.data_models.GameCard;
 import com.tectro.mobileapp2.data_models.ImageProvider;
 import com.tectro.mobileapp2.data_models.Player;
+import com.tectro.mobileapp2.enums.CardCombinations;
 import com.tectro.mobileapp2.enums.GameStates;
 
 import java.util.ArrayList;
@@ -192,6 +193,15 @@ public class MainActivity extends AppCompatActivity implements IActivityUpdatabl
         ((TextView) findViewById(R.id.PlayerRateInfo)).setText(String.valueOf(Model.getGamer().getReadyRate()));
         ((TextView) findViewById(R.id.EnemyRateInfo)).setText(String.valueOf(Model.getEnemy().getReadyRate()));
         ((TextView) findViewById(R.id.GameRoundInfo)).setText(String.valueOf(Model.GetCurrentRound()));
+    }
+
+    @Override
+    public void UpdateCombinations(Player player, CardCombinations combination) {
+        if(player == Model.getEnemy())
+            ((TextView)findViewById(R.id.EnemyCombinationInfo)).setText(combination.toString().replace('_',' '));
+
+        if(player == Model.getGamer())
+            ((TextView)findViewById(R.id.PlayerCombinationInfo)).setText(combination.toString().replace('_',' '));
     }
 
     @Override

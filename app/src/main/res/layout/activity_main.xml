@@ -10,7 +10,8 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="10dp"/>
+        android:layout_height="10dp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,9 +32,11 @@
             android:text="780789" />
 
     </LinearLayout>
+
     <Space
         android:layout_width="match_parent"
-        android:layout_height="10dp"/>
+        android:layout_height="10dp" />
+
     <RelativeLayout
         android:id="@+id/EnemyCardsLayout"
         android:layout_width="match_parent"
@@ -134,23 +137,66 @@
             android:layout_margin="0.5dp"
             android:text="780789" />
     </LinearLayout>
-    <RelativeLayout
+
+    <LinearLayout
         android:id="@+id/WinnerInfoLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:gravity="center"
-        android:visibility="gone">
+        android:orientation="vertical"
+        android:visibility="gone"
 
+        >
+        <!---->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Комбинация противника: " />
+
+            <TextView
+                android:id="@+id/EnemyCombinationInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="565465" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ваша комбинация: " />
+
+            <TextView
+                android:id="@+id/PlayerCombinationInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="565465" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
         <TextView
             android:id="@+id/WinnerInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_margin="2.5dp"
-            android:text="Ставка соперника" />
+            android:text="инфа про победителя" />
 
-    </RelativeLayout>
+
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/RateInfoLayout"
         android:layout_width="match_parent"
@@ -304,29 +350,28 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:visibility="gone"
-
         android:id="@+id/PlayerRateLayout"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:layout_weight="3"
         android:gravity="center"
-        android:layout_weight="3">
+        android:padding="5dp"
+        android:visibility="gone">
 
         <EditText
-            android:hint="Ваша ставка"
             android:id="@+id/PlayerRateHolder"
-            android:inputType="numberDecimal"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:onClick="SharePlayerRate"
-            />
+            android:hint="Ваша ставка"
+            android:inputType="numberDecimal"
+            android:onClick="SharePlayerRate" />
 
         <Button
-            android:onClick="SharePlayerRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/PlayerRateHolder"
+            android:onClick="SharePlayerRate"
             android:text="Сделать ставку" />
 
     </RelativeLayout>
@@ -337,7 +382,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center">
-
 
 
         <Button
@@ -373,18 +417,18 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/PlayerRoundFinishedLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/PlayerRoundFinishedLayout"
         android:gravity="center"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="NextGameRound"
-            android:text="Следующий раунд"/>
+            android:text="Следующий раунд" />
         <!--
                 android:visibility="gone"
         -->

@@ -1,6 +1,7 @@
 package com.tectro.mobileapp2.Interfaces;
 
 import com.tectro.mobileapp2.data_models.Player;
+import com.tectro.mobileapp2.enums.CardCombinations;
 import com.tectro.mobileapp2.enums.GameStates;
 
 public interface IActivityUpdatable {
@@ -9,5 +10,6 @@ public interface IActivityUpdatable {
     void UpdateCards();
     void UpdateScore();
     void UpdateRates();
+    void UpdateCombinations(Player player, CardCombinations combination);
     void UpdateGameState(GameStates gameState);
 }
